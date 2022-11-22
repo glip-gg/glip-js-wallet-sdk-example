@@ -29,7 +29,9 @@ export default function LoginShowComponent(props:any) {
     return (
         <>
           <ShowConnectModalCodeComponent/>
-          <button onClick={() => wallet.login('google')}>
+          <button onClick={() => wallet.login(
+              'google', window.location.href
+          )}>
             Show Login
           </button>
         </>
