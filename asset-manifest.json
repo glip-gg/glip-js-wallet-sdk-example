@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/glip-js-wallet-sdk-example/static/css/main.3c6faf0d.css",
-    "main.js": "/glip-js-wallet-sdk-example/static/js/main.5d2ed5b3.js",
-    "static/js/787.25d1e2cc.chunk.js": "/glip-js-wallet-sdk-example/static/js/787.25d1e2cc.chunk.js",
+    "main.js": "/glip-js-wallet-sdk-example/static/js/main.63b7bbcf.js",
+    "static/js/787.25178b4d.chunk.js": "/glip-js-wallet-sdk-example/static/js/787.25178b4d.chunk.js",
     "index.html": "/glip-js-wallet-sdk-example/index.html",
     "main.3c6faf0d.css.map": "/glip-js-wallet-sdk-example/static/css/main.3c6faf0d.css.map",
-    "main.5d2ed5b3.js.map": "/glip-js-wallet-sdk-example/static/js/main.5d2ed5b3.js.map",
-    "787.25d1e2cc.chunk.js.map": "/glip-js-wallet-sdk-example/static/js/787.25d1e2cc.chunk.js.map"
+    "main.63b7bbcf.js.map": "/glip-js-wallet-sdk-example/static/js/main.63b7bbcf.js.map",
+    "787.25178b4d.chunk.js.map": "/glip-js-wallet-sdk-example/static/js/787.25178b4d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3c6faf0d.css",
-    "static/js/main.5d2ed5b3.js"
+    "static/js/main.63b7bbcf.js"
   ]
 }
