@@ -5,7 +5,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Button from '@mui/material/Button';
 
-const codeString = `glipWallet.login('google')`;
+const codeString = `glipWallet.login('google', window.location.href)`;
 const ShowConnectModalCodeComponent = () => {
     
     return (
@@ -42,11 +42,11 @@ export default function LoginShowComponent(props:any) {
           <ShowConnectModalCodeComponent/>
           <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
             <Button variant="contained" onClick={() => copyToClipboard()}>Copy Code</Button>
-            <Button variant="contained"
-                    style={{marginLeft:'10px'}}
-                    onClick={() => wallet.login('google')}>
-              Execute Code
-            </Button>
+        <Button variant="contained"
+                style={{marginLeft:'10px'}}
+                onClick={() => wallet.login('google', window.location.href)}>
+          Execute Code
+        </Button>
           </div>
         </div>
     );
