@@ -12,8 +12,8 @@ import ConnectModalShowComponent from './components/code_feature_components/Conn
 import LoginShowComponent from './components/code_feature_components/LoginShowComponent';
 import LogoutShowComponent from './components/code_feature_components/LogoutShowComponent';
 import ShowWalletShowComponent from './components/code_feature_components/ShowWalletShowComponent';
-import HideWalletShowComponent from './components/code_feature_components/HideWalletShowComponent';
-
+import ERC721TransferShowComponent from './components/code_feature_components/ERC721TransferShowComponent';
+import ERC20TransferShowComponent from './components/code_feature_components/ERC20TransferShowComponent';
 
 import { Routes, Route, Link } from "react-router-dom";
 import SignTransactionShowComponent from './components/code_feature_components/SignTransactionShowComponent';
@@ -32,22 +32,22 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: -drawerWidth
   },
-  contentShift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    }),
-    marginLeft: 0
-  }
+    contentShift: {
+        transition: theme.transitions.create("margin", {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen
+        }),
+        marginLeft: drawerWidth
+    }
 }));
 
 function App() {
     const [wallet, setWallet] = useState(undefined as any);
+    const [drawerOpen, setDrawerOpen] = useState(true);
     const classes = useStyles();
     
     useEffect(() => {
@@ -63,12 +63,14 @@ function App() {
     return (
         <div id="App" className="App">
           <Box sx={{ display: 'flex' }}>
-            <AppBarComponent/>
+            <AppBarComponent
+                toggleDrawer={()=> setDrawerOpen(!drawerOpen)}
+            />
           </Box>
-          <Box component="nav">
-            <DrawerComponent/>
-          </Box>
-          <div style={{marginLeft:drawerWidth,}}>
+          <DrawerComponent drawerOpen={drawerOpen} setDrawerOpen={(newDrawerOpen:boolean)=> setDrawerOpen(newDrawerOpen)} />
+          <div className={clsx(classes.content, {
+              [classes.contentShift]: drawerOpen,
+          })}>
             <div style={{
                 display:'flex',
                 marginLeft:20,
@@ -80,13 +82,15 @@ function App() {
                 <Route path="/" element={<ConnectModalShowComponent />} />
                 <Route path="login" element={<LoginShowComponent />} />
                 <Route path="logout" element={<LogoutShowComponent />} />
+                <Route path="show-hide-wallet" element={<ShowWalletShowComponent />} />
                 <Route path="sign-transaction" element={<SignTransactionShowComponent />} />
-                <Route path="show-wallet" element={<ShowWalletShowComponent />} />
-                <Route path="hide-wallet" element={<HideWalletShowComponent />} />
+                <Route path="show-721-transfer" element={<ERC721TransferShowComponent />} />
+                <Route path="show-20-transfer" element={<ERC20TransferShowComponent />} /> 
+
               </Routes>
             </div>
-            </div>
           </div>
+        </div>
     );
 }
 

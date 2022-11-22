@@ -3,12 +3,23 @@ import getGlipWallet from '../../wallet';
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import Button from '@mui/material/Button';
 
-const ShowCodeComponent = () => {
-    const codeString = `glipWallet.showWallet()`;
+const codeStringShowWallet = `glipWallet.showWallet()`;
+const ShowCodeComponentShowWallet = () => {
+    
     return (
         <SyntaxHighlighter language="javascript" style={docco}>
-          {codeString}
+          {codeStringShowWallet}
+        </SyntaxHighlighter>
+    );
+}
+const codeStringHideWallet = `glipWallet.hideWallet()`;
+const ShowHCodeComponentHideWallet = () => {
+    
+    return (
+        <SyntaxHighlighter language="javascript" style={docco}>
+          {codeStringHideWallet}
         </SyntaxHighlighter>
     );
 }
@@ -25,13 +36,52 @@ export default function ShowWalletShowComponent(props:any) {
     };
         initWallet();
     }, []);
+
+    
+    //copy codestring to clipboard
+    const copyToClipboardShowWallet = () => {
+        navigator.clipboard.writeText(codeStringShowWallet);
+    }
+
+    const copyToClipboardHideWallet = () => {
+        navigator.clipboard.writeText(codeStringHideWallet);
+    }
+
     
     return (
         <>
-          <ShowCodeComponent/>
-          <button onClick={() => wallet.showWallet()}>
-            Show Wallet
-          </button>
+        <div style={{
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center',
+            flexDirection:'column',
+        }}>
+        <ShowCodeComponentShowWallet/>
+        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+        <Button variant="contained" onClick={() => copyToClipboardShowWallet()}>Copy Code</Button>
+        <Button variant="contained"
+        style={{marginLeft:'10px'}}
+        onClick={() => wallet.showWallet()}>
+        Execute Code
+        </Button>
+        </div>
+        </div>
+        <div style={{
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center',
+            flexDirection:'column',
+        }}>
+          <ShowHCodeComponentHideWallet/>
+          <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+            <Button variant="contained" onClick={() => copyToClipboardHideWallet()}>Copy Code</Button>
+            <Button variant="contained"
+                    style={{marginLeft:'10px'}}
+                    onClick={() => wallet.hideWallet()}>
+              Execute Code
+            </Button>
+          </div>
+        </div>
         </>
     );
 }

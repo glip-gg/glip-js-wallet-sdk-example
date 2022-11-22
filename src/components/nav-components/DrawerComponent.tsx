@@ -25,14 +25,19 @@ const data = [
     {
         "name": "Wallet UI Methods",
         "children":[
-            { name: "Show Wallet", icon: <></>, link: "show-wallet" },
-            { name: "Hide Wallet", icon: <></>, link: "hide-wallet",}
+            { name: "Show/Hide Wallet", icon: <></>, link: "show-hide-wallet" },
         ]
     },
     {"name": "Web3 Transaction Methods",
      "children":[
          { name: "Sign Transaction", icon: <></>, link: "sign-transaction" },
+    ]},
+    {"name": "Common Contract Interactions",
+     "children":[
+         { name: "ERC20 Transfer", icon: <></>, link: "show-20-transfer" },
+         { name: "ERC721 Transfer", icon: <></>, link: "show-721-transfer" },
     ]}
+    
 ];
 
 // rendernested data in collapsable list
@@ -117,13 +122,12 @@ const useStylesListItem = makeStyles({
 
 export default function DrawerContent(props:any) {
     const classes = useStyles();
-    const [open, setOpen] = useState(true);
     
     return (
         <Drawer
             className={classes.drawer}
           
-            open={true}
+            open={props.drawerOpen}
             anchor={"left"}
             classes={{
                 paper: classes.drawerPaper
@@ -131,14 +135,12 @@ export default function DrawerContent(props:any) {
             variant={"persistent"}
             ModalProps={{
                 keepMounted: true, // Better open performance on mobile.
-                container:document.getElementById("App"),
                 style: { position: "relative" }
             }}
             sx={{
-                display: { xs: 'block', sm: 'block'},
-                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, background: 'transparent', position: "absolute" },
+                '& .MuiDrawer-paper': { background: 'white', },
             }}
-            onClose={() => setOpen(false)}>
+            onClose={() => props.setDrawerOpen(false)}>
           <div className={classes.drawerHeader}></div>
           {getNestedList(data)}
         </Drawer>

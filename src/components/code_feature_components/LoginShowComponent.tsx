@@ -3,9 +3,11 @@ import getGlipWallet from '../../wallet';
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import Button from '@mui/material/Button';
 
+const codeString = `glipWallet.login('google')`;
 const ShowConnectModalCodeComponent = () => {
-    const codeString = `glipWallet.login('google')`;
+    
     return (
         <SyntaxHighlighter language="javascript" style={docco}>
           {codeString}
@@ -15,7 +17,11 @@ const ShowConnectModalCodeComponent = () => {
 
 export default function LoginShowComponent(props:any) {
     const [wallet, setWallet] = useState(undefined as any);
-        
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(codeString);
+    }
+    
     useEffect(() => {
         const initWallet = async () => {
         const wallet:any = await getGlipWallet();
@@ -27,11 +33,21 @@ export default function LoginShowComponent(props:any) {
     }, []);
     
     return (
-        <>
+        <div style={{
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center',
+            flexDirection:'column',
+        }}>
           <ShowConnectModalCodeComponent/>
-          <button onClick={() => wallet.login('google')}>
-            Show Login
-          </button>
-        </>
+          <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+            <Button variant="contained" onClick={() => copyToClipboard()}>Copy Code</Button>
+            <Button variant="contained"
+                    style={{marginLeft:'10px'}}
+                    onClick={() => wallet.login('google')}>
+              Execute Code
+            </Button>
+          </div>
+        </div>
     );
 }

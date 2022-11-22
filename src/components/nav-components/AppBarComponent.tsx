@@ -44,6 +44,7 @@ export default function AppBarComponent(props:any) {
                 color="inherit"
                 aria-label="menu"
                 sx={{ mr: 2 }}
+                onClick={()=> props.toggleDrawer()}
             >
               <MenuIcon />
             </IconButton>
