@@ -52,11 +52,11 @@ function App() {
     
     useEffect(() => {
         const initWallet = async () => {
-        const wallet:any = await getGlipWallet();
-        setWallet(wallet);
-        console.log('userinfo', await wallet.getUserInfo());
-        console.log('www');
-    };
+            const wallet:any = await getGlipWallet();
+            setWallet(wallet);
+            console.log('userinfo', await wallet.getUserInfo());
+            console.log('www');
+        };
         initWallet();
   }, []);
     

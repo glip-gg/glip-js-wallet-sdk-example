@@ -31,7 +31,12 @@ export default function LoginShowComponent(props:any) {
     };
         initWallet();
     }, []);
-    
+
+
+    const handleLogin = async () => {
+        let loginResp = await wallet.login('google', window.location.href);
+        console.log('loginResp', loginResp);
+    }
     return (
         <div style={{
             display:'flex',
@@ -42,11 +47,11 @@ export default function LoginShowComponent(props:any) {
           <ShowConnectModalCodeComponent/>
           <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
             <Button variant="contained" onClick={() => copyToClipboard()}>Copy Code</Button>
-        <Button variant="contained"
-                style={{marginLeft:'10px'}}
-                onClick={() => wallet.login('google', window.location.href)}>
-          Execute Code
-        </Button>
+            <Button variant="contained"
+                    style={{marginLeft:'10px'}}
+                    onClick={handleLogin}>
+              Execute Code
+            </Button>
           </div>
         </div>
     );
