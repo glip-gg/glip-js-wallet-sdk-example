@@ -68,7 +68,9 @@ export default function SignTransactionShowComponent(props:any) {
         let signer = await wallet.getSigner();
         let displayMessage = "This transaction transfers 0 value";
         let publicAddress = (await wallet.getUserInfo()).publicAddress;
-        let signedTx = signer.signMessage("wow bro \n wow");
+        let signedTx = await signer.signMessage("wow bro \n wow");
+        console.log(signedTx, 'signedTx');
+        alert(signedTx);
     }
 
 

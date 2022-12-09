@@ -55,7 +55,6 @@ function App() {
             const wallet:any = await getGlipWallet();
             setWallet(wallet);
             console.log('userinfo', await wallet.getUserInfo());
-            console.log('www');
         };
         initWallet();
   }, []);
