@@ -8,7 +8,7 @@ const getGlipWallet = async () => {
     await glipWalletSDK.init({
         chainId: 137,
         authNetwork: 'cyan',
-        clientIdentifier: '63020e1ef81e3742a278846a'
+        clientIdentifier: '62fd0e1b5f653536e9c657a8'
     });
     initializedGlipWallet = glipWalletSDK;
     return glipWalletSDK;
