@@ -30,7 +30,10 @@ const data = [
     },
     {"name": "Web3 Transaction Methods",
      "children":[
+         { name: "Fetch Balance", icon: <></>, link: "fetch-balance" },
          { name: "Sign Transaction", icon: <></>, link: "sign-transaction" },
+         { name: "Sign Message", icon: <></>, link: "sign-message" },
+         { name: "Send Transaction", icon: <></>, link: "send-transaction" },
     ]},
     {"name": "Common Contract Interactions",
      "children":[

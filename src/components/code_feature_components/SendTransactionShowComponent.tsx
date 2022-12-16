@@ -10,7 +10,7 @@ const codeString = `
     let signer = await wallet?.getSigner();
     let displayMessage = "This transaction transfers 0 value";
     let publicAddress = (await wallet.getUserInfo()).publicAddress;
-    let signedTx = signer.signTransaction({
+    let signedTx = signer.sendTransaction({
       to: '0x0000000000000000000000000000000000000000',
       value: '0x00',
       data: '0x00',
@@ -33,8 +33,9 @@ const ShowCodeComponent = () => {
     );
 }
 
-export default function SignTransactionShowComponent(props:any) {
+export default function SendTransactionShowComponent(props:any) {
     const [wallet, setWallet] = useState(undefined as any);
+    
     useEffect(() => {
         const initWallet = async () => {
             const wallet:any = await getGlipWallet();
@@ -46,11 +47,11 @@ export default function SignTransactionShowComponent(props:any) {
     }, []);
 
 
-    const signTransaction = async () =>{
+    const sendTransaction = async () =>{
         let signer = await wallet.getSigner();
         let displayMessage = "This transaction transfers 0 value";
         let publicAddress = (await wallet.getUserInfo()).publicAddress;
-        let signedTx = await signer.signTransaction({
+        let signedTx = await signer.sendTransaction({
             to: '0x0000000000000000000000000000000000000000',
             value: '0x00',
             data: '0x00',
@@ -62,17 +63,6 @@ export default function SignTransactionShowComponent(props:any) {
         }, displayMessage);
         console.log(signedTx, 'signedTx');
     }
-
-
-    const signMessage = async () =>{
-        let signer = await wallet.getSigner();
-        let displayMessage = "This transaction transfers 0 value";
-        let publicAddress = (await wallet.getUserInfo()).publicAddress;
-        let signedTx = await signer.signMessage("wow bro \n wow");
-        console.log(signedTx, 'signedTx');
-        alert(signedTx);
-    }
-
 
     //copy codestring to clipboard
     const copyToClipboard = () => {
@@ -91,7 +81,7 @@ export default function SignTransactionShowComponent(props:any) {
             <Button variant="contained" onClick={() => copyToClipboard()}>Copy Code</Button>
             <Button variant="contained"
                     style={{marginLeft:'10px'}}
-                    onClick={() => signTransaction()}>
+                    onClick={() => sendTransaction()}>
               Execute Code
             </Button>
           </div>

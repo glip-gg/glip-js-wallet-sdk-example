@@ -8,18 +8,7 @@ import Button from '@mui/material/Button';
 const codeString = `
   const signTransaction = async () => {
     let signer = await wallet?.getSigner();
-    let displayMessage = "This transaction transfers 0 value";
-    let publicAddress = (await wallet.getUserInfo()).publicAddress;
-    let signedTx = signer.signTransaction({
-      to: '0x0000000000000000000000000000000000000000',
-      value: '0x00',
-      data: '0x00',
-      chainId: 137,
-      nonce: 0,
-      gasPrice: 0,
-      gasLimit: 0,
-      from: publicAddress,
-    }, displayMessage);
+    let signedMessage = await signer.signMessage("wow bro \n wow");
   }
 `;
 
@@ -33,7 +22,7 @@ const ShowCodeComponent = () => {
     );
 }
 
-export default function SignTransactionShowComponent(props:any) {
+export default function SignMessageShowComponent(props:any) {
     const [wallet, setWallet] = useState(undefined as any);
     useEffect(() => {
         const initWallet = async () => {
@@ -46,28 +35,12 @@ export default function SignTransactionShowComponent(props:any) {
     }, []);
 
 
-    const signTransaction = async () =>{
-        let signer = await wallet.getSigner();
-        let displayMessage = "This transaction transfers 0 value";
-        let publicAddress = (await wallet.getUserInfo()).publicAddress;
-        let signedTx = await signer.signTransaction({
-            to: '0x0000000000000000000000000000000000000000',
-            value: '0x00',
-            data: '0x00',
-            chainId: 137,
-            nonce: 0,
-            gasPrice: 0,
-            gasLimit: 0,
-            from: publicAddress,
-        }, displayMessage);
-        console.log(signedTx, 'signedTx');
-    }
-
 
     const signMessage = async () =>{
         let signer = await wallet.getSigner();
-        let displayMessage = "This transaction transfers 0 value";
         let publicAddress = (await wallet.getUserInfo()).publicAddress;
+        let displayMessage = "This transaction transfers 0 value";
+
         let signedTx = await signer.signMessage("wow bro \n wow");
         console.log(signedTx, 'signedTx');
         alert(signedTx);
@@ -91,7 +64,7 @@ export default function SignTransactionShowComponent(props:any) {
             <Button variant="contained" onClick={() => copyToClipboard()}>Copy Code</Button>
             <Button variant="contained"
                     style={{marginLeft:'10px'}}
-                    onClick={() => signTransaction()}>
+                    onClick={() => signMessage()}>
               Execute Code
             </Button>
           </div>

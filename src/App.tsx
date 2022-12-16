@@ -17,6 +17,9 @@ import ERC20TransferShowComponent from './components/code_feature_components/ERC
 
 import { Routes, Route, Link } from "react-router-dom";
 import SignTransactionShowComponent from './components/code_feature_components/SignTransactionShowComponent';
+import SendTransactionShowComponent from './components/code_feature_components/SendTransactionShowComponent';
+import SignMessageShowComponent from './components/code_feature_components/SignMessageShowComponent';
+import FetchBalanceShowComponent from './components/code_feature_components/FetchBalanceShowComponent';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -55,6 +58,7 @@ function App() {
             const wallet:any = await getGlipWallet();
             setWallet(wallet);
             console.log('userinfo', await wallet.getUserInfo());
+            console.log('balance', await wallet.getBalance());
         };
         initWallet();
   }, []);
@@ -83,6 +87,9 @@ function App() {
                 <Route path="logout" element={<LogoutShowComponent />} />
                 <Route path="show-hide-wallet" element={<ShowWalletShowComponent />} />
                 <Route path="sign-transaction" element={<SignTransactionShowComponent />} />
+                <Route path="sign-message" element={<SignMessageShowComponent />} />
+                <Route path="send-transaction" element={<SendTransactionShowComponent />} />
+                <Route path="fetch-balance" element={<FetchBalanceShowComponent />} />
                 <Route path="show-721-transfer" element={<ERC721TransferShowComponent />} />
                 <Route path="show-20-transfer" element={<ERC20TransferShowComponent />} /> 
 
